@@ -1,0 +1,83 @@
+// import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Clock from './clock';
+import Greeting from './greetings';
+import Footer from './footer';
+import EventHandler from './eventhandler';
+import './style.css';
+import styles from './button.module.css';
+import styled from 'styled-components';
+
+
+const StyledComponent = styled.div`
+  background-color: pink;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+function App() {
+  const names = ["Prabhav", "Sanjay", "yashraj", "Shreyansh"];
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email.includes('@')) 
+    {
+      setEmailError('Invalid email format');
+      return;
+    }
+
+    console.log('Form submitted successfully');
+  };
+
+  return (
+    <div style={{
+      backgroundColor: '#6caddf',
+      padding: '10px',
+      borderRadius: '5px',
+      margin: '20px' // Margin for the outer container
+    }}>
+      <p>Welcome to our site</p>
+      <Clock />
+      <h1>Hello</h1>
+      <ul>
+        {names.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+      <Greeting name="Phil" message="Let's try to learn react" />
+
+      {/* Styled component usage */}
+      <StyledComponent>Styled with CSS-in-JS</StyledComponent>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setEmailError('');
+          }}
+          placeholder="Email"
+        />
+        {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+        <button type="submit">Submit</button>
+      </form>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
