@@ -1,0 +1,44 @@
+// import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Clock from './clock';
+import Greeting from './greetings';
+import Footer from './footer';
+import EventHandler from './eventhandler';
+function App() 
+{
+  const names=["Phil","Sergio","Kevin","Kyle"] 
+  const [showMessage, setShowMessage] = useState(false);
+  // useEffect(() => 
+  // {
+  //   const timer = setInterval(() => 
+  //   {
+  //     setCount(prevCount => prevCount + 1);
+  //   }
+  //   , 1000);
+  //   return () => clearInterval(timer);
+  // }, []);
+  return (
+    
+      <div className="App">
+        
+        <Clock />  
+        <h1>Hello</h1>
+        {/* <h2>Count: {count}</h2> */}
+        <ul>
+        {names.map((name, index) => (
+      <li key={index}>{name}</li>
+      ))}
+      </ul>
+    <Greeting name="Phil" message="Let's try to learn react"/>
+    <button onClick={() => setShowMessage(!showMessage)}>
+    Clicked on button
+  </button>
+    {showMessage &&<p>Hello, React Event Handling!</p>}
+    <EventHandler />
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
