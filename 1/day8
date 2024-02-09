@@ -1,1 +1,65 @@
+// import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Clock from './clock';
+import Greeting from './greetings';
+import Footer from './footer';
+import EventHandler from './eventhandler';
+import './style.css';
+import styles from './button.module.css';
+import styled from 'styled-components';
+
+const StyledComponent = styled.div`
+  background-color: pink;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+// ...
+
+<StyledComponent>Styled with CSS-in-JS</StyledComponent>
+
+function App() {
+  const names = ["Prabhav", "Sanjay", "yashraj", "Shreyansh"];
+  const [showMessage, setShowMessage] = useState(false);
+
+  return (
+    
+    <div style={{
+      backgroundColor: '#6caddf',
+      padding: '10px',
+      borderRadius: '5px',
+      margin: '20px' // Margin for the outer container
+    }}>
+      <p>Welcome to our site</p>
+      <Clock />
+      <h1>Hello</h1>
+      <ul>
+        {names.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+      <Greeting name="Phil" message="Let's try to learn react" />
+      <p className="myClass">Styled with CSS Class </p>
+      {/* <button onClick={() => setShowMessage(!showMessage)}>
+        Clicked on button
+      </button> */}
+      {showMessage && <p>Hello, React Event Handling!</p>}
+      <EventHandler />
+
+      {/* Separate the buttons with a <br /> tag */}
+      <br />
+
+      {/* Button styled with CSS Module */}
+      <StyledComponent onClick={() => setShowMessage(!showMessage)}>
+        Clicked on button
+      </StyledComponent>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
 
